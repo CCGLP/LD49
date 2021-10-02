@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://BaseMiniGame/BaseMiniGame.tscn" type="PackedScene" id=1]
+[ext_resource path="res://asteroid_pj.png" type="Texture" id=2]
+[ext_resource path="res://AsteroidsMiniGame/AsteroidsMiniGame.gd" type="Script" id=3]
+[ext_resource path="res://AsteroidsMiniGame/Asteroids_Bullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://AsteroidsMiniGame/Asteroid.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 30.0
+
+[node name="AsteroidsMiniGame" instance=ExtResource( 1 )]
+position = Vector2( 655.615, 362.477 )
+script = ExtResource( 3 )
+bulletScene = ExtResource( 4 )
+
+[node name="Character" type="Area2D" parent="." index="1"]
+pause_mode = 2
+position = Vector2( -2.1189, 6.35669 )
+collision_layer = 1024
+collision_mask = 5120
+
+[node name="asteroid_pj" type="Sprite" parent="Character" index="0"]
+modulate = Color( 0.054902, 0.054902, 0.054902, 1 )
+position = Vector2( -0.504822, -0.332886 )
+rotation = 1.58796
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character" index="1"]
+shape = SubResource( 1 )
+
+[node name="Asteroid" parent="." index="2" instance=ExtResource( 5 )]
+position = Vector2( -420.58, 164.856 )
+space_override = 1
+speed = 200
+
+[node name="Asteroid2" parent="." index="3" instance=ExtResource( 5 )]
+position = Vector2( -525.783, -187.922 )
+rotation = 1.91354
+space_override = 1
+speed = 300
+
+[node name="Asteroid3" parent="." index="4" instance=ExtResource( 5 )]
+position = Vector2( -2.91619, -218.16 )
+rotation = -1.02595
+space_override = 1
+speed = 100
+
+[node name="Asteroid4" parent="." index="5" instance=ExtResource( 5 )]
+position = Vector2( 1051.61, 123.559 )
+rotation = -1.50503
+scale = Vector2( 0.5, 0.5 )
+space_override = 1
+speed = 600

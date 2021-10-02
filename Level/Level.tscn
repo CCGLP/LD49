@@ -1,0 +1,32 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Level/GameController.gd" type="Script" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemy/BasicEnemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SimpleDungeon/SimpleDungeon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Door/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://BaseMiniGame/BaseMiniGame.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ClickerMiniGame/ClickerMiniGame.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemy/GlitchedEnemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://AsteroidsMiniGame/AsteroidsMiniGame.tscn" type="PackedScene" id=9]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 1 )
+glitchedEnemyNumber = 1
+playerScene = ExtResource( 2 )
+enemyScene = ExtResource( 3 )
+glitchedEnemyScene = ExtResource( 8 )
+doorScene = ExtResource( 5 )
+miniGameTestScene = ExtResource( 6 )
+miniGameScenes = [ ExtResource( 9 ), ExtResource( 7 ) ]
+
+[node name="SimpleDungeon" parent="." instance=ExtResource( 4 )]
+scale = Vector2( 1.0004, 0.995192 )
+width = 43
+height = 43
+maxWidth = 10
+maxHeight = 10
+minWidth = 7
+minHeight = 7
+tries = 10
+extraCorridors = 3

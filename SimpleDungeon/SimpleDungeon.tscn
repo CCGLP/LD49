@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://SimpleDungeon/SimpleDungeon.gd" type="Script" id=1]
+[ext_resource path="res://Colision/Colision.tscn" type="PackedScene" id=2]
+
+[node name="SimpleDungeon" type="Node2D"]
+scale = Vector2( 1.0004, 1 )
+script = ExtResource( 1 )
+colision_node = ExtResource( 2 )

@@ -15,3 +15,15 @@ align = 1
 [node name="Continue" parent="." index="2"]
 text = "press space to start"
 align = 1
+
+[node name="HighScore" parent="." index="3"]
+visible = false
+
+[node name="TextEdit" parent="." index="4"]
+visible = false
+
+[node name="SendButton" parent="." index="5"]
+visible = false
+
+[node name="Leaderboard" parent="." index="6"]
+visible = false

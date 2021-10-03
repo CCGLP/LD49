@@ -11,8 +11,15 @@ var pressed := false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HighScore.text = "High Score: Level " + String(globals.highScore)
+	$SendButton.connect("pressed", self, "_send")
+	
 	pass # Replace with function body.
 
+func _send():
+	if ($TextEdit.text != "name"):
+		globals._send_score($TextEdit.text, globals.highScore)
+		globals._print_HighScores()
+	pass
 func _process(delta):
 	if (Input.is_key_pressed(KEY_SPACE) && !pressed):
 		pressed = true

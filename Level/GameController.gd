@@ -93,6 +93,7 @@ func _finish_minigame(good):
 		if (currentGlitch.health > 0) : 
 			currentGlitch._destroy()
 	elif(!good):
+		player.health-= 1
 		player._hit(currentGlitch.position, null)
 		if (currentGlitch):
 			currentGlitch._on_lose(player.position)
@@ -134,6 +135,7 @@ func _nextLevel():
 	globals.height+=2
 	globals.timerSpawn = timerSpawn
 	if (globals.currentLevel > globals.highScore):
+		globals.alreadySended = false
 		globals.highScore = globals.currentLevel
 	get_tree().reload_current_scene()
 

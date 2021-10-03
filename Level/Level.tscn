@@ -53,6 +53,7 @@ grow_horizontal = 0
 grow_vertical = 0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.631373, 0.054902, 0.662745, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Crit!"
 __meta__ = {
 "_edit_use_anchors_": false

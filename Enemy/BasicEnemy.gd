@@ -37,7 +37,7 @@ func _hit(pos):
 		var critText = get_parent().get_node("CritText")
 		critText.rect_position = pos - Vector2(0, 80)
 		var tweenText = critText.get_node("Tween")
-		tweenText.interpolate_property(critText,"modulate", Color(0,0,0,1), Color(0,0,0,0), 0.5)
+		tweenText.interpolate_property(critText,"modulate", Color(1,1,1,1), Color(1,1,1,0), 0.5)
 		tweenText.start()
 		$CritSound.pitch_scale = rand_range(0.9,1.1)
 		$CritSound.play()

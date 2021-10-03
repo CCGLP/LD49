@@ -4,9 +4,18 @@
 [ext_resource path="res://Enemy/GlitchedEnemy.gd" type="Script" id=2]
 
 [node name="GlitchedEnemy" instance=ExtResource( 1 )]
-modulate = Color( 1, 0, 0.960784, 1 )
-collision_layer = 0
+modulate = Color( 0.72549, 0.0156863, 0.74902, 1 )
+collision_layer = 256
 collision_mask = 1
 script = ExtResource( 2 )
 health = 5
-speed = 500
+speed = 800
+otherColor = Color( 0.835294, 0.952941, 0, 1 )
+
+[node name="square" parent="." index="1"]
+modulate = Color( 1, 1, 1, 1 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( -1.12372, 0 )
+
+[node name="TweenColor" type="Tween" parent="." index="4"]

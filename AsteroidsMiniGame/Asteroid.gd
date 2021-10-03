@@ -15,6 +15,8 @@ func _on_area_entered(area:Area2D):
 	print("Hola")
 	if area.name.find_last("Bullet")!= -1:
 		queue_free()
+		get_parent().get_node("ExplosionSound").pitch_scale = rand_range(0.9,1.1)
+		get_parent().get_node("ExplosionSound").play()
 	elif (area.name == "Character"):
 		get_parent()._finish_game(false)
 	

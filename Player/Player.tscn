@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://square.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Player/GUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sounds/Hit_Hurt.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Glitch.wav" type="AudioStream" id=5]
+[ext_resource path="res://Fonts/Symtext.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -9,10 +13,21 @@ extents = Vector2( 32, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 15.4833, 35.4695 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 50
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.8, 0.8 )
 collision_mask = 37
 script = ExtResource( 2 )
+speedMin = 225
+speedMax = 400
+knockBackPixelsMin = 10
+critProbMax = 0.3
+healthMax = 7
 health = 5
 unstability_check = 400
 timeAttack = 0.2
@@ -26,15 +41,19 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="cameraGame" type="Camera2D" parent="."]
 current = true
+process_mode = 0
+limit_left = -32
+limit_top = -32
+smoothing_enabled = true
 
 [node name="Arma" type="Area2D" parent="."]
 position = Vector2( 25.6822, 8.58706 )
 rotation = 1.5708
 scale = Vector2( 1, 1.64 )
 collision_layer = 2
-collision_mask = 4
+collision_mask = 260
 
 [node name="square2" type="Sprite" parent="Arma"]
 position = Vector2( 0.000160217, -21.02 )
@@ -50,4 +69,39 @@ disabled = true
 
 [node name="TweenArma" type="Tween" parent="."]
 
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound"
+
+[node name="GlitchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Sound"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource( 3 )]
+margin_left = -1.55981
+margin_top = -0.104187
+margin_right = 1281.44
+margin_bottom = 714.896
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
+[node name="GUI" parent="Camera2D" instance=ExtResource( 3 )]
+margin_left = -820.0
+margin_top = -471.0
+margin_right = 820.0
+margin_bottom = 471.0
+
+[node name="Level" parent="Camera2D/GUI" index="0"]
+visible = false
+custom_fonts/font = SubResource( 3 )
+
+[node name="LifeContainer" parent="Camera2D/GUI" index="1"]
+visible = false
+
 [connection signal="body_entered" from="Arma" to="." method="_on_Arma_body_entered"]
+
+[editable path="Camera2D/GUI"]

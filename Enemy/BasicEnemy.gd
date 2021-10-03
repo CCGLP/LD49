@@ -30,12 +30,21 @@ func _on_Area2D_body_entered(body):
 	pass
 
 func _hit(pos):
+	
 	health -= target.attack
 	if (rand_range(0,1) < target.crit_prob):
 		health-= target.attack
-	var direction = pos - self.position
-	direction = -direction.normalized()
-	move_and_collide(direction * knockBackPixels)
+		var critText = get_parent().get_node("CritText")
+		critText.rect_position = pos - Vector2(0, 80)
+		var tweenText = critText.get_node("Tween")
+		tweenText.interpolate_property(critText,"modulate", Color(0,0,0,1), Color(0,0,0,0), 0.5)
+		tweenText.start()
+		$CritSound.pitch_scale = rand_range(0.9,1.1)
+		$CritSound.play()
+	else:
+		$HitSound.pitch_scale = rand_range(0.9,1.1)
+		$HitSound.play()
+	_knock_back(pos)
 	tween.interpolate_property(self, "modulate", originalColor, colHit, hitTime)
 	tween.interpolate_property(self, "modulate", colHit, originalColor, hitTime, 0, 2, hitTime)
 	tween.start()
@@ -43,9 +52,18 @@ func _hit(pos):
 		_destroy()
 	pass
 
+func _knock_back(pos):
+	var direction = pos - self.position
+	direction = -direction.normalized()
+	move_and_collide(direction * knockBackPixels)
+	pass
+
 func _destroy():
 	pause = true
-	$CollisionShape2D.queue_free()
+	$DieSound.pitch_scale = rand_range(0.9,1.1)
+	$DieSound.play()
+	if ($CollisionShape2D || self.visible):
+		$CollisionShape2D.queue_free()
 	self.visible = false
 	pass
 

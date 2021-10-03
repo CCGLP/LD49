@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://square.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/Symtext.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://EndGame/EndGame.gd" type="Script" id=3]
+[ext_resource path="res://Level/Level.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+outline_size = 2
+outline_color = Color( 0.501961, 0.0196078, 0.0627451, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+outline_size = 2
+outline_color = Color( 0.0941176, 0.466667, 0.764706, 1 )
+font_data = ExtResource( 2 )
+
+[node name="EndGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+gameScene = ExtResource( 4 )
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.340561
+anchor_right = 0.5
+anchor_bottom = 0.340561
+margin_left = -259.0
+margin_top = -59.0
+margin_right = 259.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Continue" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -326.493
+margin_top = -10.0474
+margin_right = 314.507
+margin_bottom = 93.9526
+custom_fonts/font = SubResource( 2 )
+text = "press space to continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScore" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -511.152
+margin_top = -78.4869
+margin_right = -13.1516
+margin_bottom = -19.4869
+grow_horizontal = 0
+custom_fonts/font = SubResource( 3 )
+text = "high score: level 0"

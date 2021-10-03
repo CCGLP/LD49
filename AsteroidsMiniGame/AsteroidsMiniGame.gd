@@ -10,7 +10,7 @@ var player
 var timeToSurvive := 4
 var timeToSurviveTimer := 0.0
 
-var timeToShoot:= 0.05
+var timeToShoot:= 0.08
 var timeToShootTimer:= 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,7 +25,8 @@ func _unhandled_input(event):
 func _fire():
 	if (timeToShootTimer > timeToShoot):
 		timeToShootTimer = 0
-		print("shoot")
+		$ShootSound.pitch_scale = rand_range(0.9,1.1)
+		$ShootSound.play()
 		var bullet = bulletScene.instance()
 		bullet.position = player.position
 		bullet._start((get_global_mouse_position() - player.global_position).normalized())

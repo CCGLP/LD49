@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Crit.wav-51d84bb1aabdeccc4e6a3c5eed7edf7d.sample"
+
+[deps]
+
+source_file="res://Sounds/Crit.wav"
+dest_files=[ "res://.import/Crit.wav-51d84bb1aabdeccc4e6a3c5eed7edf7d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

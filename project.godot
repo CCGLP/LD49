@@ -12,7 +12,9 @@ config_version=4
 
 config/name="LD49"
 run/main_scene="res://EndGame/Menu.tscn"
-config/icon="res://icon.png"
+config/icon="res://heart.png"
+config/macos_native_icon="res://heart.icns"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 

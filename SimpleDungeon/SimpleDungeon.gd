@@ -77,19 +77,19 @@ func _create_corridors():
 	for i in rectArray.size()-1:
 		var rect0 = rectArray[i]
 		var rect1 = rectArray[i+1]
-		var x0 =  random.randi_range(rect0.position.x, rect0.position.x + rect0.size.x)
-		var y0 = random.randi_range(rect0.position.y, rect0.position.y + rect0.size.y)
-		var x1 = random.randi_range(rect1.position.x, rect1.position.x + rect1.size.x)
-		var y1 = random.randi_range(rect1.position.y, rect1.position.y + rect1.size.y)
+		var x0 =  random.randi_range(rect0.position.x, rect0.position.x + rect0.size.x-1)
+		var y0 = random.randi_range(rect0.position.y, rect0.position.y + rect0.size.y-1)
+		var x1 = random.randi_range(rect1.position.x, rect1.position.x + rect1.size.x-1)
+		var y1 = random.randi_range(rect1.position.y, rect1.position.y + rect1.size.y-1)
 		_create_corridor_between(x0, y0, x1, y1)
 	
 	for i in extraCorridors:
 		var rect0 = rectArray[random.randi_range(0, rectArray.size()-1)]
 		var rect1 = rectArray[random.randi_range(0, rectArray.size()-1)]
-		var x0 =  random.randi_range(rect0.position.x, rect0.position.x + rect0.size.x)
-		var y0 = random.randi_range(rect0.position.y, rect0.position.y + rect0.size.y)
-		var x1 = random.randi_range(rect1.position.x, rect1.position.x + rect1.size.x)
-		var y1 = random.randi_range(rect1.position.y, rect1.position.y + rect1.size.y)
+		var x0 =  random.randi_range(rect0.position.x, rect0.position.x + rect0.size.x-1)
+		var y0 = random.randi_range(rect0.position.y, rect0.position.y + rect0.size.y-1)
+		var x1 = random.randi_range(rect1.position.x, rect1.position.x + rect1.size.x-1)
+		var y1 = random.randi_range(rect1.position.y, rect1.position.y + rect1.size.y-1)
 		_create_corridor_between(x0, y0, x1, y1)
 
 	pass
@@ -98,14 +98,18 @@ func _create_corridor_between(x0:int, y0:int, x1:int, y1:int ):
 	var xFactor:= x1 - x0
 	if xFactor > 0 :
 		 xFactor = 1 
-	else:  
+	elif xFactor < 0 :  
 		xFactor = -1
+	else:
+		xFactor = 0
 
 	var yFactor:= y1 - y0
 	if yFactor > 0 :
 		yFactor = 1
-	else:  
+	elif (yFactor < 0):  
 		yFactor = -1
+	else: 
+		yFactor = 0
 	
 	var j = y0
 

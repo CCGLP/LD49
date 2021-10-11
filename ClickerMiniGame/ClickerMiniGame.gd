@@ -27,22 +27,30 @@ func _on_mouse_exited():
 func _unhandled_input(event):
 	if (event is InputEventMouseButton):
 		if (event as InputEventMouseButton).button_index == 1 && mouseUp && (event as InputEventMouseButton).pressed:
-			clicks+=1
-			$ClickSound.pitch_scale = 1.0 + 0.02*clicks
-			$ClickSound.play()
-			$Control/Label.text =String (maxClickNumber - clicks)
-			print("CLICK")
-			if (clicks >= maxClickNumber):
-				self._finish_game(true)
-			if (!tween.is_active()):
-				tween.interpolate_property($StaticBody2D, "scale", Vector2(1,1), Vector2(2,2), animTime);
-				tween.interpolate_property($StaticBody2D, "scale", Vector2(2,2), Vector2(1,1), animTime, 0, 2, animTime);
-				tween.start();
+			_click()				
+	pass
 
-				
-pass
+
+func _click():
+	clicks+=1
+	$ClickSound.pitch_scale = 1.0 + 0.02*clicks
+	$ClickSound.play()
+	$Control/Label.text =String (maxClickNumber - clicks)
+	print("CLICK")
+	if (clicks >= maxClickNumber):
+		self._finish_game(true)
+	if (!tween.is_active()):
+		tween.interpolate_property($StaticBody2D, "scale", Vector2(1,1), Vector2(2,2), animTime);
+		tween.interpolate_property($StaticBody2D, "scale", Vector2(2,2), Vector2(1,1), animTime, 0, 2, animTime);
+		tween.start();
+	pass
 
 func _process(delta):
+
+	if (Input.get_connected_joypads().size() > 0):
+		if (Input.is_action_just_released("ui_accept")):
+			_click()
+
 	loseTimer+= delta
 	$Control/Time.text =("%10.2f"%(loseTime- loseTimer))
 	if (loseTimer >= loseTime):

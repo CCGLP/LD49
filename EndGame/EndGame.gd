@@ -21,7 +21,7 @@ func _send():
 		globals._print_HighScores()
 	pass
 func _process(delta):
-	if (Input.is_key_pressed(KEY_SPACE) && !pressed):
+	if ((Input.is_key_pressed(KEY_SPACE) || Input.is_action_just_released("ui_home")) && !pressed):
 		pressed = true
 		var root = get_node("/root")
 		var game = gameScene.instance()

@@ -46,6 +46,9 @@ export var timeAttack := 0.5
 export var knockBackPixels := 100
 var pause = false
 onready var gui = $CanvasLayer/GUI
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_init_stats()
@@ -141,11 +144,14 @@ func _process(delta):
 				print("UNSTABLE")
 				emit_signal("Unstable")
 			
-		var mouseposition = get_global_mouse_position()
-		
-	
-
-		look_at(mouseposition)
+		var lookTransform:= Vector2(0,0)
+		if (Input.get_connected_joypads().size() > 0):
+			lookTransform = Vector2(Input.get_action_strength("right_stick_right") - Input.get_action_strength("right_stick_left"), -Input.get_action_strength("right_stick_up") + Input.get_action_strength("right_stick_down"))
+			lookTransform = lookTransform *100
+			lookTransform = self.global_position + lookTransform
+		else:
+			lookTransform = get_global_mouse_position()			
+		look_at(lookTransform)
 		$Camera2D.global_rotation = 0.0
 		if Input.is_action_pressed("ui_right"):
 			actualSpeedX = speed

@@ -20,16 +20,16 @@ func _ready():
 func _unhandled_input(event):
 	if (event is InputEventMouseButton):
 		if (event as InputEventMouseButton).button_index == 1 :
-			_fire()
+			_fire(get_global_mouse_position())
 
-func _fire():
+func _fire(lookTransform):
 	if (timeToShootTimer > timeToShoot):
 		timeToShootTimer = 0
 		$ShootSound.pitch_scale = rand_range(0.9,1.1)
 		$ShootSound.play()
 		var bullet = bulletScene.instance()
 		bullet.position = player.position
-		bullet._start((get_global_mouse_position() - player.global_position).normalized())
+		bullet._start((lookTransform - player.global_position).normalized())
 		add_child(bullet)
 	pass
 
@@ -40,5 +40,16 @@ func _process(delta):
 	if timeToSurviveTimer >= timeToSurvive:
 		timeToSurviveTimer = 0
 		_finish_game(true)
-	player.look_at(get_global_mouse_position())
+
+
+	var lookTransform:= Vector2(0,0)
+	if (Input.get_connected_joypads().size() > 0):
+		lookTransform = Vector2(Input.get_action_strength("right_stick_right") + Input.get_action_strength("ui_right")- Input.get_action_strength("right_stick_left") - Input.get_action_strength("ui_left"), -Input.get_action_strength("right_stick_up") - Input.get_action_strength("ui_up") + Input.get_action_strength("ui_down") + Input.get_action_strength("right_stick_down"))
+		lookTransform = lookTransform *100
+		lookTransform = self.global_position + lookTransform
+		if (Input.is_action_just_released("ui_accept")):
+			_fire(lookTransform)
+	else:
+		lookTransform = get_global_mouse_position()
+	player.look_at(lookTransform)
 	pass

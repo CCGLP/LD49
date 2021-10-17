@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://bala.png" type="Texture" id=1]
+[ext_resource path="res://Buff/Buff.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 30.0
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.360465, 0.154545 ), -2.93182, 0.0, 0, 0 ]
+
+[node name="Buff" type="Area2D"]
+scale = Vector2( 0.996152, 1 )
+z_index = 1
+gravity = 0.0
+monitorable = false
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 0.996302, 1 )
+shape = SubResource( 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 240
+preprocess = 1.0
+speed_scale = 1.1
+randomness = 0.73
+texture = ExtResource( 1 )
+emission_shape = 1
+emission_sphere_radius = 24.0
+direction = Vector2( 0, 0 )
+spread = 166.65
+gravity = Vector2( 0, 0 )
+initial_velocity = 0.8
+initial_velocity_random = 0.72
+angular_velocity = 16.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.4
+orbit_velocity_random = 0.6
+linear_accel = 0.1
+linear_accel_random = 0.47
+radial_accel = 13.1
+radial_accel_random = 0.6
+angle = 15.5
+angle_random = 0.38
+scale_amount = 1.1
+scale_amount_random = 0.7
+scale_amount_curve = SubResource( 2 )
+color = Color( 0.388235, 0.741176, 0.294118, 1 )
+hue_variation = -0.1
+hue_variation_random = 0.24
+
+[connection signal="body_entered" from="." to="." method="_on_Body_Enter"]

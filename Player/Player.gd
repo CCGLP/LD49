@@ -71,6 +71,10 @@ func _init_stats():
 
 	pass
 
+func _buff():
+	print("buffity buff")
+	pass
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

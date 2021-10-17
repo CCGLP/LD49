@@ -7,7 +7,7 @@ extends "res://BaseMiniGame/BaseMiniGame.gd"
 export(PackedScene) var bulletScene
 var player 
 
-var timeToSurvive := 4
+var timeToSurvive := 3
 var timeToSurviveTimer := 0.0
 
 var timeToShoot:= 0.08

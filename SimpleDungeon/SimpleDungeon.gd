@@ -42,6 +42,7 @@ func _create_dungeon():
 				node.name = "col" 
 				node.modulate = Color(random.randf_range(0,1), random.randf_range(0,1), random.randf_range(0,1))
 				add_child(node)
+			
 
 	for j in range(-1, height+1): 
 		var node = colision_node.instance()

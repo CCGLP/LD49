@@ -106,6 +106,10 @@ func pause(value):
 			enemy.pause = value
 	pass
 
+func _dequeueEnemy(enemy):
+	enemies.erase(enemy)
+	pass
+
 func _unstability_calls(glitch):
 	currentGlitch = glitch
 	var miniGameScene = miniGameScenes[random.randi_range(0, miniGameScenes.size()-1)]

@@ -1,9 +1,31 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Enemy/BasicEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemy/GlitchedEnemy.gd" type="Script" id=2]
+[ext_resource path="res://Glitch/free-digital-glitch02.jpg" type="Texture" id=3]
+[ext_resource path="res://Glitch/free-digital-glitch00.jpg" type="Texture" id=4]
+[ext_resource path="res://Glitch/free-digital-glitch05.jpg" type="Texture" id=5]
+[ext_resource path="res://Glitch/free-digital-glitch04.jpg" type="Texture" id=6]
+[ext_resource path="res://Glitch/free-digital-glitch01.jpg" type="Texture" id=7]
+[ext_resource path="res://Glitch/free-digital-glitch03.jpg" type="Texture" id=8]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="AnimatedTexture" id=1]
+flags = 4
+frames = 6
+fps = 5.0
+frame_0/texture = ExtResource( 4 )
+frame_1/texture = ExtResource( 7 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 3 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 8 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 6 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 5 )
+frame_5/delay_sec = 0.0
+
+[sub_resource type="CircleShape2D" id=2]
 radius = 4569.5
 
 [node name="GlitchedEnemy" instance=ExtResource( 1 )]
@@ -11,15 +33,18 @@ modulate = Color( 0.72549, 0.0156863, 0.74902, 1 )
 collision_layer = 256
 collision_mask = 1
 script = ExtResource( 2 )
+buffProb = 0.3
 health = 5
 speed = 800
 otherColor = Color( 0.835294, 0.952941, 0, 1 )
 
 [node name="square" parent="." index="1"]
 modulate = Color( 1, 1, 1, 1 )
+scale = Vector2( 0.0551382, 0.096742 )
+texture = SubResource( 1 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( -1.12372, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="TweenColor" type="Tween" parent="." index="4"]

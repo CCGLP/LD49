@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Level/StatUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://IconsRPG/sonic-shoes.svg" type="Texture" id=2]
+[ext_resource path="res://Fonts/Symtext.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Level/InterLevelGUI.gd" type="Script" id=4]
+[ext_resource path="res://IconsRPG/targeting.svg" type="Texture" id=5]
+[ext_resource path="res://IconsRPG/sword-array.svg" type="Texture" id=6]
+[ext_resource path="res://IconsRPG/hearts.svg" type="Texture" id=7]
+[ext_resource path="res://IconsRPG/sword-clash.svg" type="Texture" id=8]
+[ext_resource path="res://IconsRPG/weight.svg" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 3 )
+
+[node name="InterLevelGUI" type="CanvasLayer"]
+layer = 2
+
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.943909
+margin_right = 0.943848
+mouse_filter = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -18.0
+margin_top = -21.0
+margin_right = 21.0001
+margin_bottom = 16.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="GUI"]
+
+[node name="Label" type="Label" parent="GUI"]
+anchor_left = 0.5
+anchor_top = 0.209722
+anchor_right = 0.5
+anchor_bottom = 0.209722
+margin_left = -314.0
+margin_top = -74.0
+margin_right = 314.0
+margin_bottom = 74.0
+custom_fonts/font = SubResource( 1 )
+text = "LEVEL 999"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="StatsContainer" type="VBoxContainer" parent="GUI"]
+anchor_left = 0.252
+anchor_top = 0.298611
+anchor_right = 0.768
+anchor_bottom = 0.882
+margin_left = 0.440002
+margin_top = 27.0
+margin_right = -0.0400391
+margin_bottom = -0.0400391
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatSpeed" parent="GUI/StatsContainer" instance=ExtResource( 1 )]
+texture = ExtResource( 2 )
+
+[node name="StatAttack" parent="GUI/StatsContainer" instance=ExtResource( 1 )]
+margin_top = 42.0
+margin_bottom = 80.0
+name_stat = "Attack"
+texture = ExtResource( 8 )
+
+[node name="StatTimeAttack" parent="GUI/StatsContainer" instance=ExtResource( 1 )]
+margin_top = 84.0
+margin_bottom = 122.0
+name_stat = "Attack Speed"
+texture = ExtResource( 6 )
+
+[node name="StatCrit" parent="GUI/StatsContainer" instance=ExtResource( 1 )]
+margin_top = 126.0
+margin_bottom = 164.0
+name_stat = "Critical Probability"
+texture = ExtResource( 5 )
+
+[node name="StatHealth" parent="GUI/StatsContainer" instance=ExtResource( 1 )]
+margin_top = 168.0
+margin_bottom = 206.0
+name_stat = "Health"
+texture = ExtResource( 7 )
+
+[node name="StatKnock" parent="GUI/StatsContainer" instance=ExtResource( 1 )]
+margin_top = 210.0
+margin_bottom = 248.0
+name_stat = "Weight"
+texture = ExtResource( 9 )

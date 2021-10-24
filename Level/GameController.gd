@@ -26,13 +26,14 @@ var currentGlitch
 
 var enemies = [] 
 var gui
-
+onready var interGui = $InterLevelGUI/GUI
 var pause = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_reset_game()
 
-	
+	if (globals.currentLevel == 0):
+		interGui._zeroLevel()
 	player = playerScene.instance()
 	gui = player.get_node("CanvasLayer").get_node("GUI")
 	_set_parameters()
@@ -43,7 +44,9 @@ func _ready():
 
 
 	player.position = _getRandomPositionInDungeon()
-
+	player.interLevelgui = interGui; 
+	interGui.level = self
+	interGui.levelNumber = globals.currentLevel
 	for i in enemyNumber:
 		var enemy = enemyScene.instance()
 		enemy.position = _getRandomPositionInDungeon()

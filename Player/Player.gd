@@ -23,6 +23,15 @@ export var critProbMax = 0.4
 export var healthMin = 3
 export var healthMax = 10
 
+
+var healthStep = 1
+var critStep = 0.02
+var knockStep = 10
+var timeAttackStep = 0.02
+var attackStep = 1
+var speedStep = 30
+
+
 onready var tween = $TweenArma
 onready var tweenHit = $TweenHit
 export var speed:=300; 
@@ -35,6 +44,7 @@ var is_attacking := false
 var timerAttack:= 0.0
 
 export(Color, RGBA) var colHit
+onready var globals = get_node("/root/Globals")
 
 var originalColor:Color
 export var hitTime:= 0.3
@@ -46,14 +56,16 @@ export var timeAttack := 0.5
 export var knockBackPixels := 100
 var pause = false
 onready var gui = $CanvasLayer/GUI
-
+var interLevelgui; 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_init_stats()
+	interLevelgui._start(speed, attack, timeAttack, crit_prob, health, knockBackPixels)
 	originalColor = self.modulate
 	set_life_ui()
+	_save_previous_stats()
 	tweenHit.interpolate_property($square, "modulate", originalColor, colHit, hitTime*5)
 	tweenHit.interpolate_property($square, "modulate", colHit, originalColor, hitTime*5, 0, 2, hitTime*5)
 	tweenHit.start()
@@ -69,10 +81,35 @@ func _init_stats():
 	crit_prob = random.randf_range(critProbMin, critProbMax)
 	health = random.randi_range(healthMin, healthMax)
 
+	for i in globals.buffs:
+		var index = random.randi_range(0, 6)
+		match index:
+			0:
+				speed+= speedStep
+			1:
+				attack+= attackStep
+			2:
+				timeAttack+= timeAttackStep
+			3:
+				timeAttack+= timeAttackStep
+			4:
+				health+= healthStep
+			5: 
+				crit_prob+= critStep
+	globals.buffs = 0
+	pass
+
+func _save_previous_stats():
+	globals.pSpeed = speed
+	globals.pAttack = attack
+	globals.pTimeAttack = timeAttack
+	globals.pKnockBack = knockBackPixels
+	globals.pHealth = health
+	globals.pCritProb = crit_prob
 	pass
 
 func _buff():
-	print("buffity buff")
+	globals.buffs += 1
 	pass
 
 

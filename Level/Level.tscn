@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Level/GameController.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Sounds/Dying.wav" type="AudioStream" id=12]
 [ext_resource path="res://Sounds/Hit_Enemy.wav" type="AudioStream" id=13]
 [ext_resource path="res://Sounds/Crit.wav" type="AudioStream" id=14]
+[ext_resource path="res://Level/InterLevelGUI.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Curve" id=1]
 max_value = 15.0
@@ -77,3 +78,5 @@ bus = "Sound"
 [node name="CritSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 bus = "Sound"
+
+[node name="InterLevelGUI" parent="." instance=ExtResource( 15 )]

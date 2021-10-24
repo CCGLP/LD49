@@ -12,6 +12,15 @@ var highScore := 0
 var width:= 0
 var height := 0
 var alreadySended:= false
+var pSpeed:= 0
+var pAttack:=0
+var pTimeAttack:= 0
+var pCritProb:= 0
+var pHealth:= 0
+var pKnockBack:=0
+
+var buffs:=0
+
 var config = {
 	"api_key": "rfp0g6PeYW72O54dlFczE5Htim5iaS8e2mwLJQeY",
 	"game_id": "UnRogue",
